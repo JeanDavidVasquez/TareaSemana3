@@ -163,6 +163,10 @@ JAZZMIN_SETTINGS = {
     # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
     "user_avatar": None,
 
+    ############
+    # Top Menu #
+    ############
+
     # Links to put along the top menu
     "topmenu_links": [
         # Url that gets reversed (Permissions can be added)
@@ -178,11 +182,19 @@ JAZZMIN_SETTINGS = {
         {"app": "books"},
     ],
 
+    #############
+    # User Menu #
+    #############
+
     # Additional links to include in the user menu on the top right ("app" url type is not allowed)
     "usermenu_links": [
         {"name": "Documentation", "url": "https://docs.djangoproject.com/en/stable/", "new_window": True},
         {"model": "auth.User"}
     ],
+
+    #############
+    # Side Menu #
+    #############
 
     # Whether to display the side menu
     "show_sidebar": True,
@@ -224,8 +236,16 @@ JAZZMIN_SETTINGS = {
     "default_icon_parents": "fas fa-chevron-circle-right",
     "default_icon_children": "fas fa-circle",
 
+    #################
+    # Related Modal #
+    #################
+
     # Use modals instead of popups
     "related_modal_active": False,
+
+    #############
+    # UI Tweaks #
+    #############
 
     # Relative paths to custom CSS/JS scripts (must be present in static files)
     "custom_css": None,
@@ -236,6 +256,10 @@ JAZZMIN_SETTINGS = {
 
     # Whether to show the UI customizer on the sidebar
     "show_ui_builder": False,
+
+    ###############
+    # Change view #
+    ###############
 
     # Render out the change view as a single form, or in tabs, current options are:
     # - single
@@ -251,6 +275,26 @@ JAZZMIN_SETTINGS = {
         "auth.group": "vertical_tabs"
     },
 
-    # Add a language dropdown into the admin
-    "language_chooser": True,
+# Order the auth app before the books app, other apps will be alphabetically placed after these
+"order_with_respect_to": ["auth", "books"],
+
+# Keep the same app ordering as above, but also order choice and book model links within the books app
+"order_with_respect_to": ["auth", "books", "books.author", "books.book"],
+
+# Just make sure auth is first
+"order_with_respect_to": ["auth"],
+
+# Order apps automatically, but make sure choice and book admin links are first within the books app
+"order_with_respect_to": ["books.author", "books.book"],
+
+# Place our choice model admin link and our custom link first within the books app (Note: custom link name used for order key)
+"order_with_respect_to": ["books.author", "Make Messages"],
+
+# do nothing
+"order_with_respect_to": [],
+
+# Still do nothing
+"order_with_respect_to": ["doesnt_exist"],
+
 }
+
